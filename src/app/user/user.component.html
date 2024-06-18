@@ -1,0 +1,35 @@
+<div>
+    
+    <button (click)="onSelectUser()" >
+        
+        <img 
+            [src]="imagePath" 
+            [alt]="name"
+        />
+         <!-- Avec signal, appela la methode avec () Pour être certaine que la valeur est bien updater pour le UI
+          Donc ici, n'utilise pas zone.js-->
+        <span>{{ name }}</span> 
+    </button>
+</div>
+
+
+
+<!--
+<div>
+    One of the event listerners avec une methode qu'on défini dans uen class component
+    <button (click)="onSelectUser()" >
+        l'autre est appelé property binding syntaxe
+        exemple le scr est avec []
+        + créer valeur dynamique jusque quand on en a besoin dans l'html comme avec "'assets/users/' + 
+        + garder html le plus clean possible donc on rajour un get dans la class UserComponent
+        
+        <img 
+            [src]="imagePath" 
+            [alt]="selectedUser.name"
+        />
+         /!\ il y a une différence entre HTML attibutes et DOM properties mais je ne comprend pas encore
+         string interpolation (1er manière de rendre ça dynamique)
+         entre les {} on peut référencre tout les propriétés publics
+        <span>{{ selectedUser.name }}</span> 
+    </button>
+</div>-->
