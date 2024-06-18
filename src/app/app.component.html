@@ -11,16 +11,33 @@
     <li>
       <!-- fonctionne aussi si on n'a rien à mettre entre les tags 
        avatar est un signal mais pas user et cal fonctionne-->
-      <app-user [avatar]="users[0].avatar" [name]="users[0].name"/>
+      <app-user 
+        [id]="users[0].avatar" 
+        [avatar]="users[0].avatar" 
+        [name]="users[0].name"
+        (select)="onSelectUser($event)"/>
+        <!-- Pas seulement avec (select) mais aussi mais (click) par exemple -->
     </li>
     <li>
-      <app-user [avatar]="users[1].avatar" [name]="users[1].name"/>
+      <app-user 
+        [id]="users[1].avatar" 
+        [avatar]="users[1].avatar" 
+        [name]="users[1].name"
+        (select)="onSelectUser($event)"/>
     </li>
     <li> 
-      <app-user [avatar]="users[2].avatar" [name]="users[2].name"/>
+      <app-user 
+        [id]="users[2].avatar" 
+        [avatar]="users[2].avatar" 
+        [name]="users[2].name"
+        (select)="onSelectUser($event)"/>
     </li>
     <li>
-      <app-user [avatar]="users[3].avatar" [name]="users[3].name"/>
+      <app-user 
+        [id]="users[3].avatar" 
+        [avatar]="users[3].avatar" 
+        [name]="users[3].name"
+        (select)="onSelectUser($event)"/>
     </li>
 
   </ul>

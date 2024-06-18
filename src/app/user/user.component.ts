@@ -1,4 +1,4 @@
-import { Component, computed, signal, Input, input } from '@angular/core';
+import { Component, computed, signal, Input, input, Output, EventEmitter } from '@angular/core';
 //input == decorater and input is a special function
 import { DUMMY_USERS } from '../dummy-users';
 
@@ -13,18 +13,23 @@ import { DUMMY_USERS } from '../dummy-users';
 })
 
 export class UserComponent {
+  @Input({required: true}) id!:string
+
   //typescript veut savoir le type de la valeur
   //Et veut aussi l'initialiser car ne comprend pas que c'est "initialisé" avec angular
   //Avec la feature de ts "!" on dit que ça sera bien initialisé même si ts ne peux pas le voir dans ce code
   @Input({required: true}) avatar!: string 
   //required oblige à tout compléter dans l'html sinon onderstreep dans html dans la tag qui utilise user
   @Input({required: true}) name!: string
+  @Output() select = new EventEmitter()
 
   get imagePath() {
     return 'assets/users/' + this.avatar
   }
 
-  onSelectUser(){}
+  onSelectUser(){
+    this.select.emit(this.id)
+  }
 }
 
 /*
