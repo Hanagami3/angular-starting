@@ -12,33 +12,28 @@
       <!-- fonctionne aussi si on n'a rien à mettre entre les tags 
        avatar est un signal mais pas user et cal fonctionne-->
       <app-user 
-        [id]="users[0].avatar" 
-        [avatar]="users[0].avatar" 
-        [name]="users[0].name"
+        [user]="users[0]"
         (select)="onSelectUser($event)"/>
         <!-- Pas seulement avec (select) mais aussi mais (click) par exemple -->
     </li>
     <li>
       <app-user 
-        [id]="users[1].avatar" 
-        [avatar]="users[1].avatar" 
-        [name]="users[1].name"
+        [user]="users[1]"
         (select)="onSelectUser($event)"/>
     </li>
     <li> 
       <app-user 
-        [id]="users[2].avatar" 
-        [avatar]="users[2].avatar" 
-        [name]="users[2].name"
+        [user]="users[2]"
         (select)="onSelectUser($event)"/>
     </li>
     <li>
       <app-user 
-        [id]="users[3].avatar" 
-        [avatar]="users[3].avatar" 
-        [name]="users[3].name"
+        [user]="users[3]"
         (select)="onSelectUser($event)"/>
     </li>
-
   </ul>
+  <!-- ? == Si ce n'est pas null, alors ok sinon, utilise undefined comme valeur ==> un langage js
+   on peut aussu écrire un ternary expression-->
+  <app-tasks [name]="selectedUser?.name" />
+  <!-- <app-tasks [name]="selectedUser ? selectedUser.name: '' " /> -->
 </main>

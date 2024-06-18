@@ -4,11 +4,11 @@
         
         <img 
             [src]="imagePath" 
-            [alt]="name"
+            [alt]="user.name"
         />
          <!-- Avec signal, appela la methode avec () Pour être certaine que la valeur est bien updater pour le UI
           Donc ici, n'utilise pas zone.js-->
-        <span>{{ name }}</span> 
+        <span>{{ user.name }}</span> 
     </button>
 </div>
 
