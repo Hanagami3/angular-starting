@@ -8,32 +8,40 @@
 <app-header></app-header>
 <main>
   <ul id="users">
+    <!-- track permet à angular d'updater la liste de manière plus éfficiante -->
+    @for (user of users; track user.id) {
     <li>
       <!-- fonctionne aussi si on n'a rien à mettre entre les tags 
        avatar est un signal mais pas user et cal fonctionne-->
       <app-user 
-        [user]="users[0]"
+        [user]="user"
+        [selected]="user.id === selectedUserId"
         (select)="onSelectUser($event)"/>
         <!-- Pas seulement avec (select) mais aussi mais (click) par exemple -->
     </li>
-    <li>
-      <app-user 
-        [user]="users[1]"
-        (select)="onSelectUser($event)"/>
-    </li>
-    <li> 
-      <app-user 
-        [user]="users[2]"
-        (select)="onSelectUser($event)"/>
-    </li>
-    <li>
-      <app-user 
-        [user]="users[3]"
-        (select)="onSelectUser($event)"/>
-    </li>
+    }
   </ul>
   <!-- ? == Si ce n'est pas null, alors ok sinon, utilise undefined comme valeur ==> un langage js
    on peut aussu écrire un ternary expression-->
-  <app-tasks [name]="selectedUser?.name" />
-  <!-- <app-tasks [name]="selectedUser ? selectedUser.name: '' " /> -->
+  @if (selectedUser) {
+   <app-tasks [userId]="selectedUser.id"  [name]="selectedUser.name" />
+    <!-- <app-tasks [name]="selectedUser ? selectedUser.name: '' " /> -->
+  } @else {
+    <p id="fallback">Select a user to see theis tasks!</p>
+  }  
 </main>
+
+
+<!-- <main>
+  <ul id="users">
+    <li *ngFor="let user of users">
+      <app-user 
+        [user]="user"
+        (select)="onSelectUser($event)"/>
+    </li>
+  </ul>
+   <app-tasks *ngIf="selectedUser; else fallback" [name]="selectedUser!.name" />
+   <ng-template #fallback>
+    <p id="fallback">Select a user to see theis tasks!</p>
+  </ng-template>
+</main> -->

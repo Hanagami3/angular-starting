@@ -1,20 +1,22 @@
 import { Component, computed, signal, Input, input, Output, EventEmitter, output } from '@angular/core';
 //input == decorater and input is a special function
 import { DUMMY_USERS } from '../dummy-users';
+import { User } from './user.model';
 
 //Presque la même chose mais avec un type au peut définir autre chose que des type objet sinon plus commun de voir des interface dans Angular
+/*
 type User = {
   id: string
   avatar: string
   name: string
 }
 
-interface User1 {
+interface User {
   id: string
   avatar: string
   name: string
 }
-
+*/
 
 //Avec angular on ne divise pas sumplement sa page en block mais on peut fair en sorte de réutiliser ses block si on en a besoin
 //Par exemple User component oeut être réutiliser avec différentes data
@@ -28,6 +30,7 @@ interface User1 {
 
 export class UserComponent{
   @Input({ required: true}) user!: User
+  @Input({required: true}) selected!: boolean
   @Output() select = new EventEmitter<string>()
 
   get imagePath() {
