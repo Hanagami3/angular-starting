@@ -2,6 +2,7 @@ import { Component, computed, signal, Input, input, Output, EventEmitter, output
 //input == decorater and input is a special function
 import { DUMMY_USERS } from '../dummy-users';
 import { User } from './user.model';
+import { CardComponent } from "../shared/card/card.component";
 
 //Presque la même chose mais avec un type au peut définir autre chose que des type objet sinon plus commun de voir des interface dans Angular
 /*
@@ -21,10 +22,11 @@ interface User {
 //Avec angular on ne divise pas sumplement sa page en block mais on peut fair en sorte de réutiliser ses block si on en a besoin
 //Par exemple User component oeut être réutiliser avec différentes data
 @Component({
-  selector: 'app-user',
-  standalone: true,
-  templateUrl: './user.component.html',
-  styleUrl: './user.component.css'
+    selector: 'app-user',
+    standalone: true,
+    templateUrl: './user.component.html',
+    styleUrl: './user.component.css',
+    imports: [CardComponent]
 })
 
 

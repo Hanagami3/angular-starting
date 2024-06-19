@@ -1,7 +1,7 @@
-<div>
-    
-    <button [class.active]="selected" (click)="onSelectUser()" >
-        
+<!-- Si utilisation d'un mark-up qui a un component, alors pas defaut, il ne va pas garder ce qu'il y a dedans 
+Donc ici avec app-card, ne garde pas <button [class.active]="selected" (click)="onSelectUser()" > ...  -->
+<app-card> 
+    <button [class.active]="selected" (click)="onSelectUser()" >      
         <img 
             [src]="imagePath" 
             [alt]="user.name"
@@ -10,7 +10,7 @@
           Donc ici, n'utilise pas zone.js-->
         <span>{{ user.name }}</span> 
     </button>
-</div>
+</app-card>
 
 
 

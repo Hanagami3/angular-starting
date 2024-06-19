@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TaskComponent } from "./task/task.component";
 import { NewTaskComponent } from "./new-task/new-task.component";
+import {  NewTaskData } from './task/task.model';
+import { TasksService } from './tasks.service';
+
 
 
 @Component({
@@ -21,46 +24,35 @@ export class TasksComponent {
   //@Input() name: string | undefined
 
   IsAddingTask: boolean = false
+  
+  /*
+  // on peut faire comme ça mais problème car différente intentiation de tasksservice dans différent component
+  private tasksService = new TasksService();
+  */
+  
+  // DEPENDENCY INJECTION ==> you tell Angular wich type of value you need 
+  // and Angular creates it and provides it as an argument
+  // Pivate est ici un raccourcie qui va créer automatiquemement une propriété avec le même nom
+  constructor(private tasksService: TasksService) {}
 
-  tasks = [
-    {
-      id: 't1',
-      userId: 'u1',
-      title: 'Master Angular',
-      summary:
-        'Learn all the basic and advanced features of Angular & how to apply them.',
-      dueDate: '2025-12-31',
-    },
-    {
-      id: 't2',
-      userId: 'u3',
-      title: 'Build first prototype',
-      summary: 'Build a first prototype of the online shop website',
-      dueDate: '2024-05-31',
-    },
-    {
-      id: 't3',
-      userId: 'u3',
-      title: 'Prepare issue template',
-      summary:
-        'Prepare and describe an issue template which will help with project management',
-      dueDate: '2024-06-15',
-    },
-  ]
- 
   get selectedUserTasks(){
-    return this.tasks.filter((task) => task.userId === this.userId)
+    return this.tasksService.getUserTasks(this.userId)
   }
 
-  onCompleteTask(id: string){
-    this.tasks = this.tasks.filter(task => task.id !== id)
-  }
+   onCompleteTask(id: string){
+  //   this.tasksService = this.tasksService.filter(task => task.id !== id)
+   }
 
   onStartAddTask(){
       this.IsAddingTask = true
   }
 
-  onCancelAddTask(){
+  onCloseAddTask(){
     this.IsAddingTask = false
   }
+
+  //Kan remove because we're no longer triggering it 
+  //  onAddTask(taskData: NewTaskData){
+  //    this.IsAddingTask = false
+  //  }
 }
